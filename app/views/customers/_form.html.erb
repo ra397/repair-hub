@@ -1,0 +1,29 @@
+<%= form_with(model: @customer, local: true) do |form| %>
+  <div>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :address %>
+    <%= form.text_field :address %>
+  </div>
+
+  <div>
+    <%= form.label :phone_number, "Phone Number" %>
+    <%= form.telephone_field :phone_number %>
+  </div>
+
+  <div>
+    <%= form.label :email %>
+    <%= form.email_field :email %>
+  </div>
+
+  <div>
+    <%= form.submit 'Save Customer' %>
+  </div>
+
+  <div>
+    <%= link_to 'Cancel', customers_path %>
+  </div>
+<% end %>

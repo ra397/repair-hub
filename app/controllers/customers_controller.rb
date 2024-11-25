@@ -13,11 +13,13 @@ class CustomersController < ApplicationController
     end
 
     def create
+        puts "Params: #{params.inspect}" # Debugging
         @customer = Customer.new(customer_params)
         if @customer.save
-            redirect_to @customer, notice: 'Customer was successfully created.'
+            redirect_to customers_path, notice: 'Customer was successfully created.'
         else
-            render :new
+            flash.now[:alert] = 'Failed to create customer.'
+            render :new, status: :unprocessable_entity
         end
     end
 
@@ -29,19 +31,25 @@ class CustomersController < ApplicationController
         if @customer.update(customer_params)
             redirect_to @customer, notice: 'Customer was successfully updated.'
         else
+            flash.now[:alert] = 'Failed to update customer.'
             render :edit, status: :unprocessable_entity
         end 
     end
 
     def destroy
-        @customer.destroy
-        redirect_to customers_path, notice: 'Customer was successfully deleted.'
+        if @customer.destroy
+          redirect_to customers_path, notice: 'Customer was successfully deleted.'
+        else
+          redirect_to customers_path, alert: 'Failed to delete customer.'
+        end
     end
 
     private
 
     def customer_params
-        params.require(:customer).permit(:name, :address, :phone_number, :email)
+        permitted_params = params.require(:customer).permit(:name, :address, :phone_number, :email)
+        puts "Permitted Params: #{permitted_params.inspect}" # Debugging
+        permitted_params
     end
 
     def set_customer
