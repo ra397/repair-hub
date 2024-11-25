@@ -1,0 +1,31 @@
+<h1>Ticket: <%= @ticket.ticket_number %></h1>
+
+<p>
+  <strong>Status:</strong> <%= @ticket.status %>
+</p>
+
+<p>
+  <strong>Device Name:</strong> <%= @ticket.device_name.presence || 'Not provided' %>
+</p>
+
+<p>
+  <strong>Device Model:</strong> <%= @ticket.device_model.presence || 'Not provided' %>
+</p>
+
+<p>
+  <strong>Device Serial:</strong> <%= @ticket.device_serial.presence || 'Not provided' %>
+</p>
+
+<p>
+  <strong>Customer:</strong> <%= @ticket.customer&.name || 'Unassigned' %>
+</p>
+
+<%= link_to 'Edit', edit_ticket_path(@ticket), class: 'btn btn-warning' %>
+<%= link_to 'Back to Tickets', tickets_path, class: 'btn btn-secondary' %>
+
+
+<form action="<%= ticket_path(@ticket) %>" method="post" style="display:inline;">
+  <input type="hidden" name="_method" value="delete">
+  <input type="hidden" name="<%= request_forgery_protection_token %>" value="<%= form_authenticity_token %>">
+  <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this ticket?');">Delete</button>
+</form>

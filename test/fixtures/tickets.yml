@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ticket_number: MyString
+  device_name: MyString
+  device_model: MyString
+  device_serial: MyString
+  status: MyString
+  customer: one
+
+two:
+  ticket_number: MyString
+  device_name: MyString
+  device_model: MyString
+  device_serial: MyString
+  status: MyString
+  customer: two

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_11_25_172345) do
+ActiveRecord::Schema[8.0].define(version: 2024_11_25_194601) do
   create_table "customers", force: :cascade do |t|
     t.string "name"
     t.string "address"
@@ -19,4 +19,18 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_25_172345) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "tickets", force: :cascade do |t|
+    t.string "ticket_number"
+    t.string "device_name"
+    t.string "device_model"
+    t.string "device_serial"
+    t.string "status"
+    t.integer "customer_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_tickets_on_customer_id"
+  end
+
+  add_foreign_key "tickets", "customers"
 end

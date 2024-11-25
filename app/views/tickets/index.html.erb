@@ -1,2 +1,26 @@
-<h1>Tickets#index</h1>
-<p>Find me in app/views/tickets/index.html.erb</p>
+<h1>Tickets</h1>
+
+<%= link_to 'New Ticket', new_ticket_path, class: 'btn btn-primary' %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Ticket #</th>
+      <th>Status</th>
+      <th>Customer</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @tickets.each do |ticket| %>
+      <tr>
+        <td><%= ticket.ticket_number %></td>
+        <td><%= ticket.status %></td>
+        <td><%= ticket.customer&.name || 'Unassigned' %></td>
+        <td>
+          <%= link_to 'View', ticket_path(ticket), class: 'btn btn-info' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,42 @@
+<%= form_with(model: @ticket, local: true) do |form| %>
+  <% if @ticket.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@ticket.errors.count, "error") %> prohibited this ticket from being saved:</h2>
+      <ul>
+        <% @ticket.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :device_name, "Device Name" %>
+    <%= form.text_field :device_name %>
+  </div>
+
+  <div>
+    <%= form.label :device_model, "Model" %>
+    <%= form.text_field :device_model %>
+  </div>
+
+  <div>
+    <%= form.label :device_serial, "Serial Number" %>
+    <%= form.text_field :device_serial %>
+  </div>
+
+  <div>
+    <%= form.label :status %>
+    <%= form.select :status, ['New', 'Awaiting Parts', 'In Progress', 'Awaiting Dropoff', 'Billed', 'Paid'], required: true %>
+  </div>
+
+  <div>
+    <%= form.label :customer_id, "Assign to Customer" %>
+    <%= form.collection_select :customer_id, Customer.all, :id, :name, include_blank: true %>
+  </div>
+
+  <div>
+    <%= form.submit class: 'btn btn-primary' %>
+    <%= link_to 'Back', tickets_path, class: 'btn btn-secondary' %>
+  </div>
+<% end %>
