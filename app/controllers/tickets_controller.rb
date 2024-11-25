@@ -18,7 +18,7 @@ class TicketsController < ApplicationController
       redirect_to tickets_path, notice: 'Ticket was successfully created.'
     else
       flash.now[:alert] = 'Failed to create ticket. Please correct the errors below.'
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 

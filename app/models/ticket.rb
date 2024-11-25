@@ -6,8 +6,6 @@ class Ticket < ApplicationRecord
   validates :device_name, length: { maximum: 255 }, allow_blank: true
   validates :device_model, length: { maximum: 255 }, allow_blank: true
   validates :device_serial, length: { maximum: 255 }, allow_blank: true
-
-
   before_validation :generate_ticket_number, on: :create
 
   private

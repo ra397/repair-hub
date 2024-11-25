@@ -1,24 +1,32 @@
-# README
+# Repair Hub
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+**Repair Hub** is a simple Rails application designed for a single-user environment to manage tickets for device repairs. It features ticket tracking, customer management, and an intuitive workflow for efficiently handling repair jobs.
 
-Things you may want to cover:
+## **Highlights**
 
-* Ruby version
+### **Tickets**
 
-* System dependencies
+- Automatically generated ticket numbers (e.g., `24-0001` for the first ticket in 2024).
+- Track device details including:
+  - Device name
+  - Model
+  - Serial number
+  - Status
+- Associate tickets with customers.
+- Full CRUD functionality for tickets.
 
-* Configuration
+### **Customers**
 
-* Database creation
+- Store customer details like:
+  - Name
+  - Address
+  - Phone number
+  - Email
+- Link customers to their tickets.
+- Full CRUD functionality for customers.
 
-* Database initialization
+### **Authentication**
 
-* How to run the test suite
+- Simple, secure login system for single-user access.
+- No signup required; pre-configured credentials stored securely in Rails encrypted credentials.
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
