@@ -1,0 +1,39 @@
+<h1>Edit Customer</h1>
+
+<%= form_with(model: @customer, local: true) do |form| %>
+  <% if @customer.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@customer.errors.count, "error") %> prohibited this customer from being saved:</h2>
+      <ul>
+        <% @customer.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name %>
+    <%= form.text_field :name, required: true %>
+  </div>
+
+  <div>
+    <%= form.label :address %>
+    <%= form.text_field :address %>
+  </div>
+
+  <div>
+    <%= form.label :phone_number, "Phone Number" %>
+    <%= form.telephone_field :phone_number %>
+  </div>
+
+  <div>
+    <%= form.label :email %>
+    <%= form.email_field :email, required: true %>
+  </div>
+
+  <div>
+    <%= form.submit 'Update Customer', class: 'btn btn-primary' %>
+    <%= link_to 'Back', customer_path(@customer), class: 'btn btn-secondary' %>
+  </div>
+<% end %>
