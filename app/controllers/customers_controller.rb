@@ -14,7 +14,6 @@ class CustomersController < ApplicationController
     end
 
     def create
-        puts "Params: #{params.inspect}" # Debugging
         @customer = Customer.new(customer_params)
         if @customer.save
             redirect_to customers_path, notice: 'Customer was successfully created.'

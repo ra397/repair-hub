@@ -20,6 +20,35 @@
   <strong>Customer:</strong> <%= @ticket.customer&.name || 'Unassigned' %>
 </p>
 
+<p><strong>Line Items</strong></p>
+<%= link_to 'Add Line Item', new_ticket_line_item_path(@ticket), class: 'btn btn-primary' %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Description</th>
+      <th>Amount</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @line_items.each do |line_item| %>
+      <tr>
+        <td><%= line_item.description %></td>
+        <td><%= number_to_currency(line_item.amount) %></td>
+        <td>
+          <%= link_to 'Edit', edit_ticket_line_item_path(@ticket, line_item), class: 'btn btn-warning' %>
+          <form action="<%= ticket_line_item_path(@ticket, line_item) %>" method="post" style="display:inline;">
+            <input type="hidden" name="_method" value="delete">
+            <input type="hidden" name="<%= request_forgery_protection_token %>" value="<%= form_authenticity_token %>">
+            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this line item?');">Delete</button>
+          </form>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
 <%= link_to 'Edit', edit_ticket_path(@ticket), class: 'btn btn-warning' %>
 <%= link_to 'Back to Tickets', tickets_path, class: 'btn btn-secondary' %>
 

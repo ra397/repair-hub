@@ -6,6 +6,7 @@ class TicketsController < ApplicationController
   end
 
   def show
+    @line_items = @ticket.line_items
   end
 
   def new

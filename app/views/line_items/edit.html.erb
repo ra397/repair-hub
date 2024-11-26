@@ -1,0 +1,5 @@
+<h1><%= @line_item.new_record? ? 'New Line Item' : 'Edit Line Item' %></h1>
+
+<%= render 'form', ticket: @ticket, line_item: @line_item %>
+
+<%= link_to 'Back to Ticket', @ticket, class: 'btn btn-secondary' %>

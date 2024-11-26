@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_11_25_194601) do
+ActiveRecord::Schema[8.0].define(version: 2024_11_26_060433) do
   create_table "customers", force: :cascade do |t|
     t.string "name"
     t.string "address"
@@ -18,6 +18,15 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_25_194601) do
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "line_items", force: :cascade do |t|
+    t.string "description"
+    t.decimal "amount"
+    t.integer "ticket_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ticket_id"], name: "index_line_items_on_ticket_id"
   end
 
   create_table "tickets", force: :cascade do |t|
@@ -32,5 +41,6 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_25_194601) do
     t.index ["customer_id"], name: "index_tickets_on_customer_id"
   end
 
+  add_foreign_key "line_items", "tickets"
   add_foreign_key "tickets", "customers"
 end

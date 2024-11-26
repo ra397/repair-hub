@@ -13,6 +13,9 @@ Rails.application.routes.draw do
   # root "posts#index"
   get '/favicon.ico', to: ->(_) { [204, {}, []] }
 
-  resources :tickets
+  resources :tickets do
+    resources :line_items, except: [:index, :show]
+  end
+  
   resources :customers
 end
