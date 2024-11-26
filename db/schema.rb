@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_11_26_060433) do
+ActiveRecord::Schema[8.0].define(version: 2024_11_26_173417) do
   create_table "customers", force: :cascade do |t|
     t.string "name"
     t.string "address"
@@ -18,6 +18,8 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_26_060433) do
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.index ["user_id"], name: "index_customers_on_user_id"
   end
 
   create_table "line_items", force: :cascade do |t|
@@ -38,9 +40,20 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_26_060433) do
     t.integer "customer_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
     t.index ["customer_id"], name: "index_tickets_on_customer_id"
+    t.index ["user_id"], name: "index_tickets_on_user_id"
   end
 
+  create_table "users", force: :cascade do |t|
+    t.string "username"
+    t.string "password_digest"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "customers", "users"
   add_foreign_key "line_items", "tickets"
   add_foreign_key "tickets", "customers"
+  add_foreign_key "tickets", "users"
 end

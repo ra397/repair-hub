@@ -1,8 +1,9 @@
 class TicketsController < ApplicationController
+  before_action :require_login
   before_action :set_ticket, only: %i[show edit update destroy]
 
   def index
-    @tickets = Ticket.all
+    @tickets = current_user.tickets
   end
 
   def show
@@ -10,11 +11,11 @@ class TicketsController < ApplicationController
   end
 
   def new
-    @ticket = Ticket.new
+    @ticket = current_user.tickets.build
   end
 
   def create
-    @ticket = Ticket.new(ticket_params)
+    @ticket = current_user.tickets.build(ticket_params)
     if @ticket.save
       redirect_to tickets_path, notice: 'Ticket was successfully created.'
     else
@@ -43,7 +44,9 @@ class TicketsController < ApplicationController
   private
 
   def set_ticket
-    @ticket = Ticket.find(params[:id])
+    @ticket = current_user.tickets.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to tickets_path, alert: 'Ticket not found.'
   end
 
   def ticket_params

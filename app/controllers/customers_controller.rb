@@ -1,8 +1,9 @@
 class CustomersController < ApplicationController
+    before_action :require_login
     before_action :set_customer, only: [:show, :edit, :update, :destroy]
 
     def index
-        @customers = Customer.all
+        @customers = current_user.customers
     end
 
     def show
@@ -10,11 +11,11 @@ class CustomersController < ApplicationController
     end
 
     def new
-        @customer = Customer.new
+        @customer = current_user.customers.build
     end
 
     def create
-        @customer = Customer.new(customer_params)
+        @customer = current_user.customers.build(customer_params)
         if @customer.save
             redirect_to customers_path, notice: 'Customer was successfully created.'
         else
@@ -47,12 +48,12 @@ class CustomersController < ApplicationController
     private
 
     def customer_params
-        permitted_params = params.require(:customer).permit(:name, :address, :phone_number, :email)
-        puts "Permitted Params: #{permitted_params.inspect}" # Debugging
-        permitted_params
+        params.require(:customer).permit(:name, :address, :phone_number, :email)
     end
 
     def set_customer
-        @customer = Customer.find(params[:id])
+        @customer = current_user.customers.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+        redirect_to customers_path, alert: 'Customer not found.'
     end
 end

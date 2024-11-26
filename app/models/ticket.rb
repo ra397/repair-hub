@@ -1,4 +1,5 @@
 class Ticket < ApplicationRecord
+  belongs_to :user
   belongs_to :customer
   has_many :line_items, dependent: :destroy
 
