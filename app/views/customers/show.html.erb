@@ -20,6 +20,30 @@
   <%= @customer.email %>
 </p>
 
+<p><strong>Tickets:</strong></p>
+<% if @customer.tickets.any? %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Ticket Number</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @customer.tickets.each do |ticket| %>
+        <tr>
+          <td><%= ticket.ticket_number %></td>
+          <td><%= ticket.status %></td>
+          <td><%= link_to 'View Ticket', ticket_path(ticket), class: 'btn btn-primary' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>No tickets available for this customer.</p>
+<% end %>
+
 <%= link_to 'Edit Customer', edit_customer_path(@customer), class: 'btn btn-warning' %>
 <%= link_to 'Back to Customers', customers_path, class: 'btn btn-secondary' %>
 <form action="<%= customer_path(@customer) %>" method="post">
