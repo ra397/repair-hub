@@ -17,9 +17,9 @@ class TicketsController < ApplicationController
   def create
     @ticket = current_user.tickets.build(ticket_params)
     if @ticket.save
-      redirect_to tickets_path, notice: 'Ticket was successfully created.'
+      redirect_to tickets_path, notice: "Ticket was successfully created."
     else
-      flash.now[:alert] = 'Failed to create ticket. Please correct the errors below.'
+      flash.now[:alert] = "Failed to create ticket. Please correct the errors below."
       render :new, status: :unprocessable_entity
     end
   end
@@ -29,16 +29,16 @@ class TicketsController < ApplicationController
 
   def update
     if @ticket.update(ticket_params)
-      redirect_to tickets_path, notice: 'Ticket was successfully updated.'
+      redirect_to tickets_path, notice: "Ticket was successfully updated."
     else
-      flash.now[:alert] = 'Failed to update ticket. Please correct the errors below.'
+      flash.now[:alert] = "Failed to update ticket. Please correct the errors below."
       render :edit
     end
   end
 
   def destroy
     @ticket.destroy
-    redirect_to tickets_path, notice: 'Ticket was successfully deleted.'
+    redirect_to tickets_path, notice: "Ticket was successfully deleted."
   end
 
   private
@@ -46,7 +46,7 @@ class TicketsController < ApplicationController
   def set_ticket
     @ticket = current_user.tickets.find(params[:id])
   rescue ActiveRecord::RecordNotFound
-    redirect_to tickets_path, alert: 'Ticket not found.'
+    redirect_to tickets_path, alert: "Ticket not found."
   end
 
   def ticket_params

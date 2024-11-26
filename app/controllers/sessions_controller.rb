@@ -1,6 +1,5 @@
 class SessionsController < ApplicationController
     def new
-
     end
 
     def create
@@ -18,5 +17,4 @@ class SessionsController < ApplicationController
         session[:user_id] = nil
         redirect_to login_path, notice: "Logged out!"
     end
-
 end

@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
-  get '/favicon.ico', to: ->(_) { [204, {}, []] }
+  get "/favicon.ico", to: ->(_) { [ 204, {}, [] ] }
 
   root "tickets#index"
 
@@ -22,11 +22,11 @@ Rails.application.routes.draw do
   # Login/logout
   get "login", to: "sessions#new"
   post "login", to: "sessions#create"
-  post "logout", to: "sessions#destroy", as: :logout 
+  post "logout", to: "sessions#destroy", as: :logout
 
   resources :tickets do
-    resources :line_items, except: [:index, :show]
+    resources :line_items, except: [ :index, :show ]
   end
-  
+
   resources :customers
 end

@@ -4,14 +4,14 @@ class Ticket < ApplicationRecord
   has_many :line_items, dependent: :destroy
 
   validates :ticket_number, presence: true, uniqueness: true
-  validates :status, presence: true, inclusion: { in: ['New', 'Awaiting Parts', 'In Progress', 'Awaiting Dropoff', 'Billed', 'Paid']}
+  validates :status, presence: true, inclusion: { in: [ "New", "Awaiting Parts", "In Progress", "Awaiting Dropoff", "Billed", "Paid" ] }
   validates :device_name, length: { maximum: 50 }, allow_blank: true
   validates :device_model, length: { maximum: 50 }, allow_blank: true
   validates :device_serial, length: { maximum: 50 }, allow_blank: true
   before_validation :generate_ticket_number, on: :create
 
   private
-  
+
   def generate_ticket_number
     return if ticket_number.present? # Avoid overwriting if already set
     year = Time.current.strftime("%y")
