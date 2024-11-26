@@ -1,32 +1,9 @@
 # Repair Hub
 
-**Repair Hub** is a simple Rails application designed for a single-user environment to manage tickets for device repairs. It features ticket tracking, customer management, and an intuitive workflow for efficiently handling repair jobs.
+**Repair Hub** is a lightweight web application for managing customer repairs, tickets, and invoices. This application is ideal for small repair shops looking for a simple solution to organize and track their operations efficiently.
 
-## **Highlights**
-
-### **Tickets**
-
-- Automatically generated ticket numbers (e.g., `24-0001` for the first ticket in 2024).
-- Track device details including:
-  - Device name
-  - Model
-  - Serial number
-  - Status
-- Associate tickets with customers.
-- Full CRUD functionality for tickets.
-
-### **Customers**
-
-- Store customer details like:
-  - Name
-  - Address
-  - Phone number
-  - Email
-- Link customers to their tickets.
-- Full CRUD functionality for customers.
-
-### **Authentication**
-
-- Simple, secure login system for single-user access.
-- No signup required; pre-configured credentials stored securely in Rails encrypted credentials.
-
+## **Key Features:**
+- **User Authentication**: Secure login, signup, and logout functionality.
+- **Customer Management**: Add, edit, view, and delete customer details.
+- **Ticket Management**: Track repair tickets for each customer, including device details and invoices.
+- **Line Items**: Associate billed items with tickets to track repair costs.
