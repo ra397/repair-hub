@@ -6,7 +6,7 @@
 */
 
 
-/* Mobile-First Login Form Styles */
+/* Mobile-First Login/Signup Form Styles */
 .form-container {
   width: 100%;
   max-width: 350px;
@@ -72,7 +72,7 @@
   transform: scale(0.98);
 }
 
-/* Enhanced Mobile Responsiveness */
+/* Enhanced Mobile Responsiveness for Login/Signup */
 @media (max-width: 375px) {
   .form-container {
     padding: 1rem;
@@ -211,7 +211,7 @@
   transition: 0.4s;
 }
 
-/* Mobile Responsiveness */
+/* Mobile Responsiveness for Navbar */
 @media (max-width: 768px) {
   .navbar {
     flex-wrap: wrap;
@@ -255,10 +255,13 @@
   padding: 0.22rem;
 }
 
+/* Styling for Adding new Items or switching from Ticket/Customer */
 .btn-primary, .btn-secondary {
   padding: 0.22rem;
+  margin-bottom: 2.0rem;
 }
 
+/* Styling for tables */
 table {
   border-collapse: collapse;
   width: 100%;
@@ -285,3 +288,62 @@ th {
   background-color: #f0f0f0; /* Highlight header row */
   font-weight: bold;
 } 
+
+/* STYLING FOR CUSTOMER SHOW PAGE*/
+
+/* Styling for delete buttons */
+.btn-danger {
+  background-color: #e74c3c;
+  padding: 0.22rem;
+  text-align: center;
+}
+
+.btn-danger:hover {
+  background-color: #b31200;
+}
+
+.show-actions {
+  display: flex;
+  justify-content: flex-start;
+  gap: 1rem;
+}
+
+/* Align text inside edit and back buttons centrally */
+.btn-edit, .btn-back {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 600px) {
+  .show-actions {
+    flex-direction: column;
+  }
+}
+
+
+/* STYLING FOR TICKET SHOW PAGE */
+.line-item-actions {
+  display: flex; /* Use Flexbox for horizontal alignment */
+  align-items: center; /* Vertically align items */
+  gap: 10px; /* Add space between the text and the button */
+}
+
+.line-item-actions p {
+  margin: 0; /* Remove default margin for proper alignment */
+  white-space: nowrap; /* Prevent text from wrapping to multiple lines */
+  line-height: 1;
+}
+
+.line-item-actions .btn {
+  width: auto;
+}
+
+td .btn {
+  width: 100px;
+}
+
+.btn-edit-line-item {
+  padding: 0.22rem;
+}

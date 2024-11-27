@@ -35,7 +35,7 @@
         <tr>
           <td><%= ticket.ticket_number %></td>
           <td><%= ticket.status %></td>
-          <td><%= link_to 'View Ticket', ticket_path(ticket), class: 'btn btn-primary' %></td>
+          <td><%= link_to 'View Ticket', ticket_path(ticket), class: 'btn btn-info' %></td>
         </tr>
       <% end %>
     </tbody>
@@ -44,10 +44,12 @@
   <p>No tickets available for this customer.</p>
 <% end %>
 
-<%= link_to 'Edit Customer', edit_customer_path(@customer), class: 'btn btn-warning' %>
-<%= link_to 'Back to Customers', customers_path, class: 'btn btn-secondary' %>
-<form action="<%= customer_path(@customer) %>" method="post">
-  <input type="hidden" name="_method" value="delete">
-  <input type="hidden" name="<%= request_forgery_protection_token %>" value="<%= form_authenticity_token %>">
-  <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this customer?');">Delete Customer</button>
-</form>
+<div class="show-actions">
+  <%= link_to 'Edit Customer', edit_customer_path(@customer), class: 'btn btn-edit' %>
+  <%= link_to 'Back to Customers', customers_path, class: 'btn btn-back' %>
+  <form action="<%= customer_path(@customer) %>" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <input type="hidden" name="<%= request_forgery_protection_token %>" value="<%= form_authenticity_token %>">
+    <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this customer?');">Delete Customer</button>
+  </form>
+</div>
