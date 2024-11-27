@@ -1,0 +1,287 @@
+/* This file contains stylign for
+*    1. Login Form
+*    2. Sign Up Form
+*    3. Navbar
+*    4. Ticket and Customer tables
+*/
+
+
+/* Mobile-First Login Form Styles */
+.form-container {
+  width: 100%;
+  max-width: 350px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  box-sizing: border-box;
+}
+
+.form-container h1 {
+  text-align: center;
+  color: #2c3e50;
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
+  font-weight: 500;
+}
+
+.form-container > div {
+  margin-bottom: 1.25rem;
+}
+
+.form-container label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #34495e;
+  font-size: 0.9rem;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  font-size: 1rem;
+  background-color: #f9f9f9;
+  transition: all 0.3s ease;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+.btn {
+  width: 100%;
+  padding: 0.9rem;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 0.5rem;
+}
+
+.btn:hover {
+  background-color: #2980b9;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+/* Enhanced Mobile Responsiveness */
+@media (max-width: 375px) {
+  .form-container {
+    padding: 1rem;
+  }
+
+  .form-container h1 {
+    font-size: 1.6rem;
+  }
+
+  .form-control,
+  .btn {
+    padding: 0.65rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Landscape Mobile Devices */
+@media (max-height: 600px) and (max-width: 768px) {
+  .form-container {
+    max-width: 100%;
+    width: 90%;
+    padding: 1rem;
+  }
+}
+
+/* Soft Touch for Touch Devices */
+@media (pointer: coarse) {
+  .form-control,
+  .btn {
+    min-height: 44px; /* WCAG accessibility recommendation */
+    padding: 0.8rem;
+  }
+}
+
+/* Navbar Styles */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 5%;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar-logo a {
+  color: #2c3e50;
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.navbar-menu {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-right: 2rem;
+}
+
+.navbar-link {
+  text-decoration: none;
+  color: #34495e;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.navbar-link:hover {
+  color: #3498db;
+}
+
+.navbar-auth {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.navbar-username {
+  color: #2c3e50;
+  margin-right: 1rem;
+}
+
+.btn-login, .btn-signup, .btn-logout {
+  text-decoration: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 4px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-login {
+  color: #3498db;
+  border: 1px solid #3498db;
+  background: transparent;
+}
+
+.btn-login:hover {
+  background-color: #3498db;
+  color: white;
+}
+
+.btn-signup {
+  background-color: #3498db;
+  color: white;
+}
+
+.btn-signup:hover {
+  background-color: #2980b9;
+}
+
+.btn-logout {
+  background: none;
+  color: #e74c3c;
+  padding: 0.5rem 1rem;
+}
+
+.navbar-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.navbar-toggle span {
+  width: 25px;
+  height: 3px;
+  background-color: #2c3e50;
+  margin: 3px 0;
+  transition: 0.4s;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .navbar {
+    flex-wrap: wrap;
+    position: relative;
+  }
+
+  .navbar-toggle {
+    display: flex;
+    order: 2;
+  }
+
+  .navbar-logo {
+    order: 1;
+  }
+
+  .navbar-menu {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+  }
+
+  .navbar-open .navbar-menu {
+    display: flex;
+  }
+
+  .navbar-auth {
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem;
+  }
+
+  .btn-login, .btn-signup, .btn-logout {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+}
+
+
+.btn-info {
+  padding: 0.22rem;
+}
+
+.btn-primary, .btn-secondary {
+  padding: 0.22rem;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 20px 0;
+  font-size: 1em;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+th, td {
+  text-align: center;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2; /* Alternate row background color */
+}
+
+tr:hover {
+  background-color: #eee; /* Hover effect on rows */
+}
+
+th {
+  background-color: #f0f0f0; /* Highlight header row */
+  font-weight: bold;
+} 
