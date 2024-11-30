@@ -3,6 +3,14 @@
 <%= link_to 'New Ticket', new_ticket_path %>
 <%= link_to 'Customers', customers_path %>
 
+
+<%= form_with url: tickets_path, method: :get, local: true do |form| %>
+  <%= form.label :query, "Search Tickets:" %>
+  <%= form.text_field :query, value: params[:query], placeholder: "Enter ticket #, status, or customer name" %>
+  <%= form.submit "Search" %>
+  <%= link_to 'Reset', tickets_path %>
+<% end %>
+
 <table>
   <thead>
     <tr>

@@ -3,7 +3,12 @@ class CustomersController < ApplicationController
     before_action :set_customer, only: [ :show, :edit, :update, :destroy ]
 
     def index
-        @customers = current_user.customers
+        if params[:query].present?
+            query = params[:query].downcase
+            @customers = current_user.customers.where("LOWER(name) LIKE :query OR LOWER(address) LIKE :query OR LOWER(phone_number) LIKE :query OR LOWER(email) LIKE :query", query: "%#{query}%")
+        else
+            @customers = current_user.customers
+        end
     end
 
     def show

@@ -3,8 +3,14 @@ class TicketsController < ApplicationController
   before_action :set_ticket, only: %i[show edit update destroy]
 
   def index
-    @tickets = current_user.tickets
-  end
+    if params[:query].present?
+      query = params[:query].downcase
+      @tickets = current_user.tickets.joins(:customer)
+                   .where("LOWER(ticket_number) LIKE :query OR LOWER(status) LIKE :query OR LOWER(customers.name) LIKE :query", query: "%#{query}%")
+    else
+      @tickets = current_user.tickets
+    end
+  end   
 
   def show
     @line_items = @ticket.line_items
