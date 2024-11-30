@@ -1,24 +1,24 @@
-<div class="form-container">
+<div>
   <h1>Sign Up</h1>
 
   <%= form_with model: @user, url: signup_path, local: true do |form| %>
     <div>
       <%= form.label :username %>
-      <%= form.text_field :username, class: "form-control" %>
+      <%= form.text_field :username %>
     </div>
 
     <div>
       <%= form.label :password %>
-      <%= form.password_field :password, class: "form-control" %>
+      <%= form.password_field :password %>
     </div>
 
     <div>
       <%= form.label :password_confirmation %>
-      <%= form.password_field :password_confirmation, class: "form-control" %>
+      <%= form.password_field :password_confirmation %>
     </div>
 
     <div>
-      <%= form.submit "Sign Up", class: "btn" %>
+      <%= form.submit "Sign Up" %>
     </div>
   <% end %>
 </div>

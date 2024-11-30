@@ -20,60 +20,37 @@
 
   <body>
     <%# Improved Responsive Navbar %>
-    <nav class="navbar">
-      <div class="navbar-logo">
+    <nav>
+      <div>
         <a href="/">Repair Hub</a>
       </div>
 
-      <div class="navbar-toggle">
+      <div>
         <span></span>
         <span></span>
         <span></span>
       </div>
 
-      <div class="navbar-menu">
-        <div class="navbar-auth">
+      <div>
+        <div>
           <% if logged_in? %>
-            <span class="navbar-username">
+            <span>
               <%= current_user.username %>
             </span>
-            <%= form_with url: logout_path, method: :post, class: 'logout-form' do |f| %>
-              <%= f.submit "Logout", class: "btn-logout" %>
+            <%= form_with url: logout_path, method: :post do |f| %>
+              <%= f.submit "Logout" %>
             <% end %>
           <% else %>
-            <%= link_to "Log In", login_path, class: "btn-login" %>
-            <%= link_to "Sign Up", signup_path, class: "btn-signup" %>
+            <%= link_to "Log In", login_path %>
+            <%= link_to "Sign Up", signup_path %>
           <% end %>
         </div>
       </div>
     </nav>
 
-    <%# Flash messages section %>
-    <div class="container mt-3">
-      <% flash.each do |key, message| %>
-        <div class="alert alert-<%= key == 'notice' ? 'success' : 'danger' %> alert-dismissible fade show" role="alert">
-          <%= message %>
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-      <% end %>
-    </div>
-
     <%# Main content section %>
-    <main class="container mt-4">
+    <main>
       <%= yield %>
     </main>
-
-    <%# Footer section %>
-    <footer class="footer">
-      <div class="container">
-        <p>&copy; <%= Time.now.year %> Repair Hub. All rights reserved.</p>
-      </div>
-    </footer>
-
-    <script>
-      document.querySelector('.navbar-toggle').addEventListener('click', function() {
-        document.querySelector('.navbar').classList.toggle('navbar-open');
-      });
-    </script>
   </body>
 </html>

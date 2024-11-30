@@ -22,7 +22,7 @@
 
 <p><strong>Tickets:</strong></p>
 <% if @customer.tickets.any? %>
-  <table class="table table-striped">
+  <table>
     <thead>
       <tr>
         <th>Ticket Number</th>
@@ -44,12 +44,12 @@
   <p>No tickets available for this customer.</p>
 <% end %>
 
-<div class="show-actions">
+<div>
   <%= link_to 'Edit Customer', edit_customer_path(@customer), class: 'btn btn-edit' %>
   <%= link_to 'Back to Customers', customers_path, class: 'btn btn-back' %>
   <form action="<%= customer_path(@customer) %>" method="post">
     <input type="hidden" name="_method" value="delete">
     <input type="hidden" name="<%= request_forgery_protection_token %>" value="<%= form_authenticity_token %>">
-    <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this customer?');">Delete Customer</button>
+    <button type="submit" onclick="return confirm('Are you sure you want to delete this customer?');">Delete Customer</button>
   </form>
 </div>

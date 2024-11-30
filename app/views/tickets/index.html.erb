@@ -1,7 +1,7 @@
 <h1>Tickets</h1>
 
-<%= link_to 'New Ticket', new_ticket_path, class: 'btn btn-primary' %>
-<%= link_to 'Customers', customers_path, class: 'btn btn-secondary' %>
+<%= link_to 'New Ticket', new_ticket_path %>
+<%= link_to 'Customers', customers_path %>
 
 <table>
   <thead>
@@ -19,7 +19,7 @@
         <td><%= ticket.status %></td>
         <td><%= ticket.customer&.name || 'Unassigned' %></td>
         <td>
-          <%= link_to 'View', ticket_path(ticket), class: 'btn btn-info' %>
+          <%= link_to 'View', ticket_path(ticket) %>
         </td>
       </tr>
     <% end %>

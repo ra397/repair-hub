@@ -20,12 +20,12 @@
   <strong>Customer:</strong> <%= @ticket.customer&.name || 'Unassigned' %>
 </p>
 
-<div class="line-item-actions">
+<div>
   <p><strong>Line Items:</strong></p>
-  <%= link_to 'Add Line Item', new_ticket_line_item_path(@ticket), class: 'btn btn-primary' %>
+  <%= link_to 'Add Line Item', new_ticket_line_item_path(@ticket) %>
 </div>
 
-<table class="table">
+<table>
   <thead>
     <tr>
       <th>Description</th>
@@ -39,11 +39,11 @@
         <td><%= line_item.description %></td>
         <td><%= number_to_currency(line_item.amount) %></td>
         <td>
-          <%= link_to 'Edit', edit_ticket_line_item_path(@ticket, line_item), class: 'btn btn-edit-line-item' %>
+          <%= link_to 'Edit', edit_ticket_line_item_path(@ticket, line_item) %>
           <form action="<%= ticket_line_item_path(@ticket, line_item) %>" method="post" style="display:inline;">
             <input type="hidden" name="_method" value="delete">
             <input type="hidden" name="<%= request_forgery_protection_token %>" value="<%= form_authenticity_token %>">
-            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this line item?');">Delete</button>
+            <button type="submit" onclick="return confirm('Are you sure you want to delete this line item?');">Delete</button>
           </form>
         </td>
       </tr>
@@ -51,12 +51,12 @@
   </tbody>
 </table>
 
-<div class="show-actions">
-  <%= link_to 'Edit', edit_ticket_path(@ticket), class: 'btn btn-edit' %>
-  <%= link_to 'Back to Tickets', tickets_path, class: 'btn btn-back' %>
+<div>
+  <%= link_to 'Edit', edit_ticket_path(@ticket) %>
+  <%= link_to 'Back to Tickets', tickets_path %>
   <form action="<%= ticket_path(@ticket) %>" method="post" style="display:inline;">
     <input type="hidden" name="_method" value="delete">
     <input type="hidden" name="<%= request_forgery_protection_token %>" value="<%= form_authenticity_token %>">
-    <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this ticket?');">Delete Ticket</button>
+    <button type="submit" onclick="return confirm('Are you sure you want to delete this ticket?');">Delete Ticket</button>
   </form>
 </div>

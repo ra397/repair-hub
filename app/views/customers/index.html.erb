@@ -1,7 +1,7 @@
 <h1>Customers</h1>
 
-<%= link_to 'New Customer', new_customer_path, class: 'btn btn-primary' %>
-<%= link_to 'Tickets', tickets_path, class: 'btn btn-secondary' %>
+<%= link_to 'New Customer', new_customer_path %>
+<%= link_to 'Tickets', tickets_path %>
 
 
 <table>
@@ -22,7 +22,7 @@
         <td><%= customer.phone_number %></td>
         <td><%= customer.email %></td>
         <td>
-          <%= link_to 'View', customer_path(customer), class: 'btn btn-info' %>
+          <%= link_to 'View', customer_path(customer) %>
         </td>
       </tr>
     <% end %>
