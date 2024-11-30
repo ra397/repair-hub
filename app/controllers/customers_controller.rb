@@ -4,12 +4,20 @@ class CustomersController < ApplicationController
 
     def index
         if params[:query].present?
-            query = params[:query].downcase
-            @customers = current_user.customers.where("LOWER(name) LIKE :query OR LOWER(address) LIKE :query OR LOWER(phone_number) LIKE :query OR LOWER(email) LIKE :query", query: "%#{query}%")
+        query = params[:query].downcase
+        @customers = current_user.customers
+                                .where("LOWER(name) LIKE :query OR LOWER(address) LIKE :query OR LOWER(phone_number) LIKE :query OR LOWER(email) LIKE :query", query: "%#{query}%")
+                                .order(created_at: :desc)
+                                .page(params[:page])
+                                .per(10)
         else
-            @customers = current_user.customers
+        @customers = current_user.customers
+                                .order(created_at: :desc)
+                                .page(params[:page])
+                                .per(10)
         end
     end
+      
 
     def show
         @tickets = @customer.tickets

@@ -5,12 +5,19 @@ class TicketsController < ApplicationController
   def index
     if params[:query].present?
       query = params[:query].downcase
-      @tickets = current_user.tickets.joins(:customer)
-                   .where("LOWER(ticket_number) LIKE :query OR LOWER(status) LIKE :query OR LOWER(customers.name) LIKE :query", query: "%#{query}%")
+      @tickets = current_user.tickets
+                             .joins(:customer)
+                             .where("LOWER(ticket_number) LIKE :query OR LOWER(status) LIKE :query OR LOWER(customers.name) LIKE :query", query: "%#{query}%")
+                             .order(created_at: :desc)
+                             .page(params[:page])
+                             .per(10)
     else
       @tickets = current_user.tickets
+                             .order(created_at: :desc)
+                             .page(params[:page])
+                             .per(10)
     end
-  end   
+  end
 
   def show
     @line_items = @ticket.line_items
