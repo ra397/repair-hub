@@ -51,6 +51,8 @@
   </tbody>
 </table>
 
+<%= link_to "Generate Invoice", invoice_ticket_path(@ticket), class: "btn btn-primary" %>
+
 <div>
   <%= link_to 'Edit', edit_ticket_path(@ticket) %>
   <%= link_to 'Back to Tickets', tickets_path %>

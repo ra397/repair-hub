@@ -1,6 +1,6 @@
 class TicketsController < ApplicationController
   before_action :require_login
-  before_action :set_ticket, only: %i[show edit update destroy]
+  before_action :set_ticket, only: %i[show invoice edit update destroy]
 
   def index
     if params[:query].present?
@@ -21,6 +21,14 @@ class TicketsController < ApplicationController
 
   def show
     @line_items = @ticket.line_items
+  end
+
+  def invoice 
+    @customer = @ticket.customer
+    @line_items = @ticket.line_items
+    @tax = @line_items.sum(:amount) * 0.06
+    @processing_fee = (@line_items.sum(:amount) + @tax) * 0.03
+    @total = @line_items.sum(:amount) + @tax + @processing_fee
   end
 
   def new

@@ -26,6 +26,9 @@ Rails.application.routes.draw do
 
   resources :tickets do
     resources :line_items, except: [ :index, :show ]
+    member do
+      get :invoice
+    end
   end
 
   resources :customers
