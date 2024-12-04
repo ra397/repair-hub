@@ -5,7 +5,7 @@ class Customer < ApplicationRecord
   # Validations
   validates :name, presence: true
   validates :email, allow_blank: true, format: { with: URI::MailTo::EMAIL_REGEXP, message: "is invalid" }
-  validates :phone_number, allow_blank: true, format: { with: /\A[\d\-\+\s]+\z/, message: "is invalid" }
+  validates :phone_number, allow_blank: true, format: { with: Regex::PHONE, message: "is invalid" }
   validates :address, length: { maximum: 255 }, allow_blank: true
 
   # Custom validation to ensure at least one contact method

@@ -11,7 +11,7 @@
 
   <div>
     <%= form.label :phone_number, "Phone Number" %>
-    <%= form.telephone_field :phone_number %>
+    <%= form.telephone_field :phone_number, data: { controller: "phone-input" }, maxlength: 12, placeholder: "123-123-1234" %>
   </div>
 
   <div>

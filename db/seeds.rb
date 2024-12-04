@@ -13,12 +13,29 @@ User.delete_all
 user1 = User.create!(username: "techguy", password: "password123")
 user2 = User.create!(username: "repairqueen", password: "securepass")
 
+# Helper method to generate phone numbers in the format 123-123-1234
+def generate_phone_number
+  "#{rand(100..999)}-#{rand(100..999)}-#{rand(1000..9999)}"
+end
+
+# Helper method to generate a random two-line address
+def generate_address
+  street_number = rand(1..9999)
+  street_name = Faker::Address.street_name
+  street_suffix = ["Drive", "Street", "Court", "Avenue", "Lane"].sample
+  city = Faker::Address.city
+  state = Faker::Address.state
+  zipcode = Faker::Address.zip_code
+
+  "#{street_number} #{street_name} #{street_suffix}\n#{city}, #{state} #{zipcode}"
+end
+
 # Generate 25 customers
 25.times do |i|
   Customer.create!(
     name: "#{Faker::Name.first_name} #{Faker::Name.last_name}", # Generate a real-looking name
-    address: "#{rand(100..999)} #{Faker::Address.street_name}, #{Faker::Address.city}",
-    phone_number: "#{rand(1000000000..9999999999)}",
+    address: generate_address,
+    phone_number: generate_phone_number,
     email: Faker::Internet.email,
     user_id: [user1.id, user2.id].sample
   )
