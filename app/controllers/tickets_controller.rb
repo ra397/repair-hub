@@ -1,6 +1,7 @@
 class TicketsController < ApplicationController
   before_action :require_login
   before_action :set_ticket, only: %i[show invoice edit update destroy]
+  before_action :check_business_info, only: [:invoice]
 
   def index
     if params[:query].present?
@@ -10,12 +11,12 @@ class TicketsController < ApplicationController
                              .where("LOWER(ticket_number) LIKE :query OR LOWER(status) LIKE :query OR LOWER(customers.name) LIKE :query", query: "%#{query}%")
                              .order(created_at: :desc)
                              .page(params[:page])
-                             .per(10)
+                             .per(25)
     else
       @tickets = current_user.tickets
                              .order(created_at: :desc)
                              .page(params[:page])
-                             .per(10)
+                             .per(25)
     end
   end
 
@@ -24,6 +25,8 @@ class TicketsController < ApplicationController
   end
 
   def invoice 
+    session[:account_referrer] = 'ticket'
+    session[:ticket_id] = @ticket.id
     @customer = @ticket.customer
     @line_items = @ticket.line_items
     @tax = @line_items.sum(:amount) * 0.06
@@ -72,5 +75,11 @@ class TicketsController < ApplicationController
 
   def ticket_params
     params.require(:ticket).permit(:device_name, :device_model, :device_serial, :status, :customer_id)
+  end
+
+  def check_business_info
+    unless current_user.business_info_complete?
+      redirect_to edit_account_path(referrer: "ticket"), alert: "Please complete your business information to generate an invoice."
+    end
   end
 end

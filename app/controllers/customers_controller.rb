@@ -9,12 +9,12 @@ class CustomersController < ApplicationController
                                 .where("LOWER(name) LIKE :query OR LOWER(address) LIKE :query OR LOWER(phone_number) LIKE :query OR LOWER(email) LIKE :query", query: "%#{query}%")
                                 .order(created_at: :desc)
                                 .page(params[:page])
-                                .per(10)
+                                .per(25)
         else
         @customers = current_user.customers
                                 .order(created_at: :desc)
                                 .page(params[:page])
-                                .per(10)
+                                .per(25)
         end
     end
       

@@ -32,4 +32,6 @@ Rails.application.routes.draw do
   end
 
   resources :customers
+
+  resource :account, only: [:edit, :update]
 end
